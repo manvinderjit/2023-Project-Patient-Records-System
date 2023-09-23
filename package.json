@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "src app.js"
+    "start": "cd src && node app.js",
+    "dev": "cd src && nodemon app.js"
   },
   "keywords": [],
   "author": "",
