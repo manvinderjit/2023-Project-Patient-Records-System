@@ -42,7 +42,6 @@ router.get("/patients/:id", async (req, res) => {
 // POST /patients: Create a new patient.
 router.post("/patients", async (req, res) => {
     const patient = new Patient(req.body);
-    console.log(patient);
     try {
       await patient.save();
       res.status(201).send(patient);
@@ -65,6 +64,15 @@ router.put("/patients/:id", async (req, res) => {
 });
 
 // DELETE /patients/:id: Delete a patient by their ID.
+router.delete("/patients/:id", async (req, res) => {
+    const _idFilter = { _id: req.params.id };    
+    try {
+      const data = await Patient.findOneAndDelete(_idFilter);
+      res.status(201).send(data);
+    } catch (e) {
+      res.status(400).send(e);
+    }
+});
   
 // export the router so that it can be used in other files
 module.exports = router;
